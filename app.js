@@ -1,27 +1,27 @@
 const boardCells = document.querySelectorAll('.boardCell');
-let index = '';
-let game = ['', '', '', '', '', '', '', '', ''];
 
-
-function playGame() {
-
-    boardCells.forEach(cell => {
-        cell.addEventListener('click', () => {
-            if (cell.textContent === '' || cell.textContent === 'O') {
-                cell.textContent = 'X';
-                index = cell.getAttribute('data-index');
-                game[index] = 'X';
-                console.log(game[0]);
-            } else {
-                cell.textContent = 'O';
-                index = cell.getAttribute('data-index');
-                game[index] = 'O';
-                console.log(game[0]);
-            }
-        })
-    });
+const playerFactory = (mark, turn) => {
+    return { mark, turn }
 }
 
-playGame();
+const player1 = playerFactory('X', true);
+const player2 = playerFactory('O', false);
 
-// && game[4] !== 'X' && game[8] !== 'X'
+boardCells.forEach(cells => {
+    cells.addEventListener('click', () => {
+        if (cells.textContent === '') {
+            if (player1.turn === true) {
+                cells.textContent = player1.mark;
+                player1.turn = false;
+                player2.turn = true;
+            } else if (player2.turn === true) {
+                cells.textContent = player2.mark;
+                player2.turn = false;
+                player1.turn = true;
+            }
+        }
+    })
+});
+
+
+
