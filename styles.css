@@ -1,0 +1,27 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.boardGame {
+    display: grid;
+    grid-template-columns: 50px 50px 50px;
+    grid-template-rows: 50px 50px 50px;
+}
+
+.boardGame .boardCell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* border for the game board */
+
+.right {
+    border-right: 0.1rem solid black;
+}
+
+.bottom {
+    border-bottom: 0.1rem solid black;
+}
