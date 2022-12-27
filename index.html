@@ -11,16 +11,34 @@
 </head>
 
 <body>
-    <div class="boardGame">
-        <div data-index='0' class="boardCell right bottom"></div>
-        <div data-index='1' class="boardCell right bottom"></div>
-        <div data-index='2' class="boardCell bottom"></div>
-        <div data-index='3' class="boardCell right bottom"></div>
-        <div data-index='4' class="boardCell right bottom"></div>
-        <div data-index='5' class="boardCell bottom"></div>
-        <div data-index='6' class="boardCell right"></div>
-        <div data-index='7' class="boardCell right"></div>
-        <div data-index='8' class="boardCell"></div>
+    <div class="containerBoard">
+        <div class="startGameInformations">
+            <label for="player1">Player1 name:</label>
+            <input type="text" name="player1" id="player1">
+            <button class="startGame" id="startGame">New game</button>
+            <label for="player2">Player2 name:</label>
+            <input type="text" name="player2" id="player2">
+        </div>
+        <div class="boardGame">
+            <div data-index='0' class="boardCell right bottom"></div>
+            <div data-index='1' class="boardCell right bottom"></div>
+            <div data-index='2' class="boardCell bottom"></div>
+            <div data-index='3' class="boardCell right bottom"></div>
+            <div data-index='4' class="boardCell right bottom"></div>
+            <div data-index='5' class="boardCell bottom"></div>
+            <div data-index='6' class="boardCell right"></div>
+            <div data-index='7' class="boardCell right"></div>
+            <div data-index='8' class="boardCell"></div>
+        </div>
+        <div class="resultGame">
+            <div class="playersName">
+                <div class="playerOne"></div>
+                <div class="playerTwo"></div>
+            </div>
+            <div class="outcomeGame">
+
+            </div>
+        </div>
     </div>
 </body>
 

@@ -4,19 +4,27 @@
     box-sizing: border-box;
 }
 
+.containerBoard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .boardGame {
     display: grid;
-    grid-template-columns: 50px 50px 50px;
-    grid-template-rows: 50px 50px 50px;
+    grid-template-columns: 150px 150px 150px;
+    grid-template-rows: 150px 150px 150px;
 }
 
 .boardGame .boardCell {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: aquamarine;
+    font-size: 4rem;
+    caret-color: transparent;
+    cursor: pointer;
 }
-
-/* border for the game board */
 
 .right {
     border-right: 0.1rem solid black;
