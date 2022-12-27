@@ -2,15 +2,45 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    caret-color: transparent;
 }
 
 .containerBoard {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 3rem;
+}
+
+.containerBoard h1 {
+    font-size: 3rem;
+    /* text-align: center; */
+}
+
+.startGameInformations {
+    display: flex;
+    margin: 3rem;
+    gap: 2rem;
+    font-size: 1.5rem;
+}
+
+.startGameInformations>div>input {
+    margin-top: 0.8rem;
+    height: 1.5rem;
+    width: 10rem;
+}
+
+.startGame {
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 1rem 2rem 1rem 2rem;
+    border: none;
+    border-radius: 3rem;
+    cursor: pointer;
 }
 
 .boardGame {
+    text-align: center;
     display: grid;
     grid-template-columns: 150px 150px 150px;
     grid-template-rows: 150px 150px 150px;
@@ -22,7 +52,6 @@
     align-items: center;
     background-color: aquamarine;
     font-size: 4rem;
-    caret-color: transparent;
     cursor: pointer;
 }
 

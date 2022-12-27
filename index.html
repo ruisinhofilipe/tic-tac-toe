@@ -12,12 +12,17 @@
 
 <body>
     <div class="containerBoard">
+        <h1>Tic-Tac-Toe</h1>
         <div class="startGameInformations">
-            <label for="player1">Player1 name:</label>
-            <input type="text" name="player1" id="player1">
-            <button class="startGame" id="startGame">New game</button>
-            <label for="player2">Player2 name:</label>
-            <input type="text" name="player2" id="player2">
+            <div class="p1-info">
+                <label for="player1">Player1 name:</label>
+                <input type="text" name="player1" id="player1">
+            </div>
+            <button class="startGame" id="startGame">Start game</button>
+            <div class="p2-info">
+                <label for="player2">Player2 name:</label>
+                <input type="text" name="player2" id="player2">
+            </div>
         </div>
         <div class="boardGame">
             <div data-index='0' class="boardCell right bottom"></div>
