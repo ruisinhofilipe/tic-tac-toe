@@ -30,18 +30,6 @@ function displayNames() {
     }
 }
 
-//Display marks of each player
-const startGameButton = document.querySelector('.startGame');
-startGameButton.addEventListener('click', () => {
-
-    // Hide players input boxes 
-    hiddenPlayerInformation();
-    // Display which player goes first
-    displayNames();
-    // Start Game 
-    startGame();
-});
-
 // Possible win outcomes for each player / draw included
 function possibleOutcomes() {
 
@@ -58,6 +46,7 @@ function possibleOutcomes() {
     ) {
         winner(player1.getName());
         displayFinalResult();
+
     }
     // Player 2 possible win scenarios
     else if (
@@ -72,15 +61,22 @@ function possibleOutcomes() {
     ) {
         winner(player2.getName());
         displayFinalResult();
+
     }
     // In case of a draw
     else if (array.every(drawGame)) {
         winner('That\'s a draw! No one');
+
         displayFinalResult();
     }
 }
 
+// Check if every element has a X or O (without declaring a winner).
+function drawGame(mark) {
+    return mark === 'X' || mark === 'O';
+}
 
+// Function that runs the game
 function startGame() {
     //Display plays of each player
     const boardCells = document.querySelectorAll('.boardCell');
@@ -110,13 +106,8 @@ function startGame() {
     });
 }
 
-
-function drawGame(mark) {
-    return mark === 'X' || mark === 'O';
-}
-
 function winner(winner) {
-    document.querySelector('.finalResult').textContent = `${winner} has won!`;
+    document.querySelector('.gameOutcome').textContent = `After a taugh battle, ${winner} has won!`;
 }
 
 function hiddenPlayerInformation() {
@@ -133,8 +124,30 @@ function displayFinalResult() {
     let finalResultDisplay = document.querySelector('.finalResult');
     finalResultDisplay.classList.add('remove-hidden');
 
-    document.querySelector('.playerTurn').classList.remove('remove-hidden')
+    document.querySelector('.playerTurn').classList.remove('remove-hidden');
+    document.querySelector('.playerTurn').style.display = 'block';
 }
+
+// Restart game button
+function restartGame() {
+    document.querySelector('.restartGame').addEventListener('click', () => {
+        location.reload();
+    })
+}
+
+//Display marks of each player
+const startGameButton = document.querySelector('.startGame');
+startGameButton.addEventListener('click', () => {
+
+    // Hide players input boxes 
+    hiddenPlayerInformation();
+    // Display which player goes first
+    displayNames();
+    // Start Game 
+    startGame();
+    // Restart Game
+    restartGame();
+});
 
 
 

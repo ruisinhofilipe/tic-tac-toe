@@ -20,14 +20,25 @@
 }
 
 .startGameInformations,
-.playerTurn,
-.finalResult {
+.playerTurn {
     background-color: #669bbc;
     display: flex;
     padding: 1rem 1.5rem 1rem 1.5rem;
     border-radius: 1rem;
     margin: 3rem;
-    gap: 2rem;
+    gap: 5rem;
+    font-size: 1.5rem;
+}
+
+.finalResult {
+    background-color: #669bbc;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 1.5rem 1rem 1.5rem;
+    border-radius: 1rem;
+    margin: 5rem;
+    padding: 2rem;
     font-size: 1.5rem;
 }
 
@@ -39,7 +50,21 @@
     font-size: 1rem;
 }
 
-.startGame {
+.restartGame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.gameOutcome {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.startGame,
+.newGame {
     font-weight: bold;
     font-size: 1rem;
     padding: 1rem 2rem 1rem 2rem;
@@ -47,6 +72,7 @@
     border-radius: 3rem;
     cursor: pointer;
 }
+
 
 .boardGame {
     background-color: #669bbc;
