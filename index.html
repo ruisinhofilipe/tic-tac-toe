@@ -15,13 +15,13 @@
         <h1>Tic-Tac-Toe</h1>
         <div class="startGameInformations">
             <div class="p1-info">
-                <label for="player1">Player1 name:</label>
-                <input type="text" name="player1" id="player1">
+                <label for="Player1">Player1 name:</label>
+                <input type="text" name="Player1" id="Player1" maxlength="6">
             </div>
             <button class="startGame" id="startGame">Start game</button>
             <div class="p2-info">
-                <label for="player2">Player2 name:</label>
-                <input type="text" name="player2" id="player2">
+                <label for="Player2">Player2 name:</label>
+                <input type="text" name="Player2" id="Player2" maxlength="6">
             </div>
         </div>
         <div class="boardGame">
@@ -35,15 +35,13 @@
             <div data-index='7' class="boardCell right"></div>
             <div data-index='8' class="boardCell"></div>
         </div>
-        <div class="resultGame">
-            <div class="playersName">
-                <div class="playerOne"></div>
-                <div class="playerTwo"></div>
-            </div>
-            <div class="outcomeGame">
+        <div class="playerTurn hidden">
 
-            </div>
         </div>
+        <div class="finalResult hidden">
+
+        </div>
+    </div>
     </div>
 </body>
 

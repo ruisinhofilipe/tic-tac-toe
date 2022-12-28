@@ -6,19 +6,26 @@
 }
 
 .containerBoard {
+    background-color: #3a86ff;
+    height: 100vh;
+    padding: 4rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 3rem;
 }
 
 .containerBoard h1 {
     font-size: 3rem;
-    /* text-align: center; */
+    margin-bottom: 2rem;
 }
 
-.startGameInformations {
+.startGameInformations,
+.playerTurn,
+.finalResult {
+    background-color: #669bbc;
     display: flex;
+    padding: 1rem 1.5rem 1rem 1.5rem;
+    border-radius: 1rem;
     margin: 3rem;
     gap: 2rem;
     font-size: 1.5rem;
@@ -27,7 +34,9 @@
 .startGameInformations>div>input {
     margin-top: 0.8rem;
     height: 1.5rem;
-    width: 10rem;
+    width: 5rem;
+    padding: 0.5rem;
+    font-size: 1rem;
 }
 
 .startGame {
@@ -40,6 +49,8 @@
 }
 
 .boardGame {
+    background-color: #669bbc;
+    margin-top: 1rem;
     text-align: center;
     display: grid;
     grid-template-columns: 150px 150px 150px;
@@ -50,9 +61,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: aquamarine;
     font-size: 4rem;
     cursor: pointer;
+}
+
+.boardCell:hover {
+    background-color: #a8dadc;
 }
 
 .right {
@@ -61,4 +75,13 @@
 
 .bottom {
     border-bottom: 0.1rem solid black;
+}
+
+/* Make player input boxes hidden */
+.hidden {
+    display: none !important;
+}
+
+.remove-hidden {
+    display: block !important;
 }
