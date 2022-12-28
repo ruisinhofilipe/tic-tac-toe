@@ -47,6 +47,8 @@ function possibleOutcomes() {
         winner(player1.getName());
         displayFinalResult();
 
+        document.querySelector('.boardGame').classList.add('hidden');
+
     }
     // Player 2 possible win scenarios
     else if (
@@ -62,12 +64,15 @@ function possibleOutcomes() {
         winner(player2.getName());
         displayFinalResult();
 
+        document.querySelector('.boardGame').classList.add('hidden');
+
     }
     // In case of a draw
     else if (array.every(drawGame)) {
         winner('That\'s a draw! No one');
-
         displayFinalResult();
+
+        document.querySelector('.boardGame').classList.add('hidden');
     }
 }
 
@@ -130,7 +135,7 @@ function displayFinalResult() {
 
 // Restart game button
 function restartGame() {
-    document.querySelector('.restartGame').addEventListener('click', () => {
+    document.querySelector('.newGame').addEventListener('click', () => {
         location.reload();
     })
 }
