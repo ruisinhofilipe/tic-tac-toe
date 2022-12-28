@@ -112,7 +112,7 @@ function startGame() {
 }
 
 function winner(winner) {
-    document.querySelector('.gameOutcome').textContent = `After a taugh battle, ${winner} has won!`;
+    document.querySelector('.gameOutcome').textContent = `After a tough battle, ${winner} has won!`;
 }
 
 function hiddenPlayerInformation() {
