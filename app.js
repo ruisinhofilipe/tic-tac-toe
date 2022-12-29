@@ -1,6 +1,9 @@
 let array = ['', '', '', '', '', '', '', '', ''];
 let index;
 
+// This project was made without the factory funtions / modules.
+// I'm doing right now a 2nd version of the project using factory functions and modules
+
 
 // Get player names, mark and set their turn 
 const playerFactory = (name, mark, turn) => {
