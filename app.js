@@ -47,14 +47,16 @@ const startGame = (() => {
     const cells = document.querySelectorAll('.boardCell');
     cells.forEach(cell => {
         cell.addEventListener('click', () => {
-            index = cell.attributes['data-index'].value;
-            array[index] = currentPlayer.mark;
-            cells[index].textContent = array[index];
-            checkWinner();
-            if (winner) {
-                console.log('we got a winner');
-            } else {
-                changePlayerTurn();
+            if (cell.textContent === '' && winner === false) {
+                index = cell.attributes['data-index'].value;
+                array[index] = currentPlayer.mark;
+                cells[index].textContent = array[index];
+                checkWinner();
+                if (winner) {
+                    console.log('we got a winner');
+                } else {
+                    changePlayerTurn();
+                }
             }
         });
     });
@@ -68,6 +70,7 @@ const startGame = (() => {
         }
     }
 
+    // Possible win combinations
     const winPossibilities = [
         [0, 1, 2],
         [3, 4, 5],
@@ -84,11 +87,11 @@ const startGame = (() => {
         for (let possibilities of winPossibilities) {
             if (array[possibilities[0]] === currentPlayer.mark && array[possibilities[1]] === currentPlayer.mark && array[possibilities[2]] === currentPlayer.mark) {
                 winner = true;
+                console.log(`${currentPlayer.name} has won`)
             }
         }
     }
 
-    // return { currentPlayer, changePlayerTurn };
 })();
 
 
