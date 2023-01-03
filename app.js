@@ -66,7 +66,7 @@ const game = (() => {
                         weGotWinner(currentPlayer.getName());
                         return;
                     } else if (drawGame) {
-                        weGotWinner('That\'s a draw, no one');
+                        weGotWinner('that\'s a draw, no one');
                         return
                     } else {
                         changePlayerTurn();
@@ -120,7 +120,6 @@ const game = (() => {
                 endGame = true;
             }
         }
-
         // Check draw
         if (array.every(checkDraw) && endGame === false) {
             drawGame = true;
