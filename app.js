@@ -15,7 +15,8 @@ const game = (() => {
     let gameBoard = document.querySelector('.boardGame');
     let i = 0;
     let index;
-    let winner = false;
+    let endGame = false;
+    let drawGame = false;
 
     // Create players
     const player1 = playerFactory('Player1', 'X');
@@ -51,18 +52,22 @@ const game = (() => {
         i++;
     });
 
-    // Display marks on the board
+    // Display marks on the grid
     const displayBoard = () => {
         const cells = document.querySelectorAll('.boardCell');
         cells.forEach(cell => {
             cell.addEventListener('click', () => {
-                if (cell.textContent === '' && winner === false) {
+                if (cell.textContent === '' && endGame === false) {
                     index = cell.attributes['data-index'].value;
                     array[index] = currentPlayer.mark;
                     cells[index].textContent = array[index];
                     checkWinner();
-                    if (winner) {
-                        console.log('we got a winner');
+                    if (endGame) {
+                        weGotWinner(currentPlayer.getName());
+                        return;
+                    } else if (drawGame) {
+                        weGotWinner('That\'s a draw, no one');
+                        return
                     } else {
                         changePlayerTurn();
                     }
@@ -75,7 +80,7 @@ const game = (() => {
     // Container that display player's name according to their turn
     const displayPlayerTurn = () => {
         const playerTurn = document.querySelector('.playerTurn');
-        playerTurn.classList.add('remove-hidden');
+        playerTurn.className = 'playerTurn remove-hidden';
 
         if (currentPlayer === player1) {
             playerTurn.textContent = `${player1.getName()}\'s turn - ${player1.mark}`;
@@ -86,17 +91,12 @@ const game = (() => {
 
     // Remove player name input boxes
     const removeInputBoxes = () => {
-        const playerBoxInput = document.querySelector('.startGameInformations');
-        playerBoxInput.classList.add('hidden');
+        document.querySelector('.startGameInformations').classList.add('hidden');
     }
 
     // Change players' turn
     const changePlayerTurn = () => {
-        if (currentPlayer === player1) {
-            currentPlayer = player2;
-        } else {
-            currentPlayer = player1;
-        }
+        currentPlayer === player1 ? currentPlayer = player2 : currentPlayer = player1;
     }
 
     // Possible win combinations
@@ -111,14 +111,37 @@ const game = (() => {
         [2, 4, 6]
     ];
 
-    // Check if there's a winner according to the win possibilities
+    // Check if there's a winner or draw according to the win possibilities
     const checkWinner = () => {
+        // check winner
         for (let possibilities of winPossibilities) {
             if (array[possibilities[0]] === currentPlayer.mark && array[possibilities[1]] === currentPlayer.mark && array[possibilities[2]] === currentPlayer.mark) {
-                winner = true;
-                console.log(`${currentPlayer.getName()} has won`)
+                weGotWinner(currentPlayer.getName());
+                endGame = true;
             }
         }
+
+        // Check draw
+        if (array.every(checkDraw) && endGame === false) {
+            drawGame = true;
+        }
+    }
+
+    const checkDraw = (mark) => {
+        return mark === 'X' || mark === 'O';
+    }
+
+    const weGotWinner = (playerWinner) => {
+        document.querySelector('.playerTurn').className = 'playerTurn hidden';
+        document.querySelector('.finalResult').classList.add('remove-hidden');
+        document.querySelector('.gameOutcome').textContent = `After a tough battle, ${playerWinner} has won!`;
+    }
+
+    // Restart game button
+    function restartGame() {
+        document.querySelector('.newGame').addEventListener('click', () => {
+            location.reload();
+        })
     }
 
     const startGame = () => {
@@ -127,9 +150,12 @@ const game = (() => {
             removeInputBoxes();
             displayBoard();
             displayPlayerTurn();
+            restartGame();
         });
     }
+
     return { startGame }
+
 })();
 
 game.startGame()
