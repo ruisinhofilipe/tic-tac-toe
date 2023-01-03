@@ -1,9 +1,16 @@
 // Get player names and mark
 const playerFactory = (name, mark) => {
-    return { name, mark }
+    const getName = () => {
+        if (document.getElementById(name).value) {
+            return document.getElementById(name).value
+        } else {
+            return name;
+        }
+    }
+    return { getName, mark }
 }
 
-const startGame = (() => {
+const game = (() => {
     let array = ['', '', '', '', '', '', '', '', ''];
     let gameBoard = document.querySelector('.boardGame');
     let i = 0;
@@ -11,8 +18,9 @@ const startGame = (() => {
     let winner = false;
 
     // Create players
-    const player1 = playerFactory('Player 1', 'X');
-    const player2 = playerFactory('Player 2', 'O');
+    const player1 = playerFactory('Player1', 'X');
+    const player2 = playerFactory('Player2', 'O');
+
     let currentPlayer = player1;
 
     // Creating div for each one of the array elements, assign a data-key containing the index and add class name
@@ -44,24 +52,45 @@ const startGame = (() => {
     });
 
     // Display marks on the board
-    const cells = document.querySelectorAll('.boardCell');
-    cells.forEach(cell => {
-        cell.addEventListener('click', () => {
-            if (cell.textContent === '' && winner === false) {
-                index = cell.attributes['data-index'].value;
-                array[index] = currentPlayer.mark;
-                cells[index].textContent = array[index];
-                checkWinner();
-                if (winner) {
-                    console.log('we got a winner');
-                } else {
-                    changePlayerTurn();
+    const displayBoard = () => {
+        const cells = document.querySelectorAll('.boardCell');
+        cells.forEach(cell => {
+            cell.addEventListener('click', () => {
+                if (cell.textContent === '' && winner === false) {
+                    index = cell.attributes['data-index'].value;
+                    array[index] = currentPlayer.mark;
+                    cells[index].textContent = array[index];
+                    checkWinner();
+                    if (winner) {
+                        console.log('we got a winner');
+                    } else {
+                        changePlayerTurn();
+                    }
+                    displayPlayerTurn();
                 }
-            }
+            });
         });
-    });
+    }
 
-    // Change between players
+    // Container that display player's name according to their turn
+    const displayPlayerTurn = () => {
+        const playerTurn = document.querySelector('.playerTurn');
+        playerTurn.classList.add('remove-hidden');
+
+        if (currentPlayer === player1) {
+            playerTurn.textContent = `${player1.getName()}\'s turn - ${player1.mark}`;
+        } else {
+            playerTurn.textContent = `${player2.getName()}\'s turn - ${player2.mark}`;
+        }
+    }
+
+    // Remove player name input boxes
+    const removeInputBoxes = () => {
+        const playerBoxInput = document.querySelector('.startGameInformations');
+        playerBoxInput.classList.add('hidden');
+    }
+
+    // Change players' turn
     const changePlayerTurn = () => {
         if (currentPlayer === player1) {
             currentPlayer = player2;
@@ -87,14 +116,23 @@ const startGame = (() => {
         for (let possibilities of winPossibilities) {
             if (array[possibilities[0]] === currentPlayer.mark && array[possibilities[1]] === currentPlayer.mark && array[possibilities[2]] === currentPlayer.mark) {
                 winner = true;
-                console.log(`${currentPlayer.name} has won`)
+                console.log(`${currentPlayer.getName()} has won`)
             }
         }
     }
 
+    const startGame = () => {
+        const gameStartButton = document.querySelector('.startGame');
+        gameStartButton.addEventListener('click', () => {
+            removeInputBoxes();
+            displayBoard();
+            displayPlayerTurn();
+        });
+    }
+    return { startGame }
 })();
 
-
+game.startGame()
 
 
 
