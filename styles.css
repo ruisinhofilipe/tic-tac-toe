@@ -109,6 +109,11 @@
     border-bottom: 0.1rem solid black;
 }
 
+.right-bottom {
+    border-right: 0.1rem solid black;
+    border-bottom: 0.1rem solid black;
+}
+
 /* Make player input boxes hidden */
 .hidden {
     display: none !important;
