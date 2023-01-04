@@ -1,3 +1,6 @@
+// Still missing the AI option, since it's optional i'll do it later
+
+
 // Get player names and mark
 const playerFactory = (name, mark) => {
     const getName = () => {

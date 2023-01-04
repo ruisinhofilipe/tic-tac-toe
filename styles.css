@@ -92,7 +92,6 @@ h1 {
     font-size: 1.4rem;
 }
 
-
 .boardGame {
     background-color: white;
     text-align: center;
@@ -119,7 +118,7 @@ h1 {
     background-color: #a8dadc;
 }
 
-/* Make player input boxes hidden */
+/* Make player input boxes hidden / remove hidden*/
 .hidden {
     display: none !important;
 }
