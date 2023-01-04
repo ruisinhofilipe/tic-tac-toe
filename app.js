@@ -29,31 +29,14 @@ const game = (() => {
         const cell = document.createElement('div');
         cell.setAttribute('data-index', i);
         cell.className = ('boardCell');
-        switch (cell.attributes['data-index'].value) {
-            case '2':
-                cell.classList.add('bottom');
-                break;
-            case '5':
-                cell.classList.add('bottom');
-                break;
-            case '6':
-                cell.classList.add('right');
-                break;
-            case '7':
-                cell.classList.add('right');
-                break;
-            case '8':
-                cell.classList.add('boardCell')
-                break;
-            default:
-                cell.classList.add('right-bottom');
-        }
         gameBoard.appendChild(cell);
         i++;
     });
 
     // Display marks on the grid
     const displayBoard = () => {
+        gameBoard.classList.remove('hidden');
+        document.querySelector('.containerBoard').className = 'containerBoardStart';
         const cells = document.querySelectorAll('.boardCell');
         cells.forEach(cell => {
             cell.addEventListener('click', () => {
@@ -79,8 +62,8 @@ const game = (() => {
 
     // Container that display player's name according to their turn
     const displayPlayerTurn = () => {
-        const playerTurn = document.querySelector('.playerTurn');
-        playerTurn.className = 'playerTurn remove-hidden';
+        document.querySelector('.finalResult').className = 'finalResult';
+        const playerTurn = document.querySelector('.gameOutcome');
 
         if (currentPlayer === player1) {
             playerTurn.textContent = `${player1.getName()}\'s turn - ${player1.mark}`;
@@ -101,14 +84,7 @@ const game = (() => {
 
     // Possible win combinations
     const winPossibilities = [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8],
-        [0, 4, 8],
-        [2, 4, 6]
+        [0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]
     ];
 
     // Check if there's a winner or draw according to the win possibilities
@@ -118,11 +94,10 @@ const game = (() => {
             if (array[possibilities[0]] === currentPlayer.mark && array[possibilities[1]] === currentPlayer.mark && array[possibilities[2]] === currentPlayer.mark) {
                 weGotWinner(currentPlayer.getName());
                 endGame = true;
+                // check Draw
+            } else if (array.every(checkDraw) && endGame === false) {
+                drawGame = true;
             }
-        }
-        // Check draw
-        if (array.every(checkDraw) && endGame === false) {
-            drawGame = true;
         }
     }
 
@@ -131,8 +106,6 @@ const game = (() => {
     }
 
     const weGotWinner = (playerWinner) => {
-        document.querySelector('.playerTurn').className = 'playerTurn hidden';
-        document.querySelector('.finalResult').classList.add('remove-hidden');
         document.querySelector('.gameOutcome').textContent = `After a tough battle, ${playerWinner} has won!`;
     }
 
@@ -150,7 +123,9 @@ const game = (() => {
             displayBoard();
             displayPlayerTurn();
             restartGame();
+
         });
+
     }
 
     return { startGame }
